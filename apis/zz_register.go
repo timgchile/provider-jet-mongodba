@@ -22,15 +22,55 @@ package apis
 import (
 	"k8s.io/apimachinery/pkg/runtime"
 
-	v1alpha1 "github.com/crossplane-contrib/provider-jet-template/apis/null/v1alpha1"
-	v1alpha1apis "github.com/crossplane-contrib/provider-jet-template/apis/v1alpha1"
+	v1alpha1 "github.com/timgchile/provider-jet-mongodba/apis/advanced/v1alpha1"
+	v1alpha1alert "github.com/timgchile/provider-jet-mongodba/apis/alert/v1alpha1"
+	v1alpha1cloud "github.com/timgchile/provider-jet-mongodba/apis/cloud/v1alpha1"
+	v1alpha1custom "github.com/timgchile/provider-jet-mongodba/apis/custom/v1alpha1"
+	v1alpha1data "github.com/timgchile/provider-jet-mongodba/apis/data/v1alpha1"
+	v1alpha1database "github.com/timgchile/provider-jet-mongodba/apis/database/v1alpha1"
+	v1alpha1encryption "github.com/timgchile/provider-jet-mongodba/apis/encryption/v1alpha1"
+	v1alpha1event "github.com/timgchile/provider-jet-mongodba/apis/event/v1alpha1"
+	v1alpha1global "github.com/timgchile/provider-jet-mongodba/apis/global/v1alpha1"
+	v1alpha1ldap "github.com/timgchile/provider-jet-mongodba/apis/ldap/v1alpha1"
+	v1alpha1maintenance "github.com/timgchile/provider-jet-mongodba/apis/maintenance/v1alpha1"
+	v1alpha1mongodbatlas "github.com/timgchile/provider-jet-mongodba/apis/mongodbatlas/v1alpha1"
+	v1alpha1network "github.com/timgchile/provider-jet-mongodba/apis/network/v1alpha1"
+	v1alpha1online "github.com/timgchile/provider-jet-mongodba/apis/online/v1alpha1"
+	v1alpha1org "github.com/timgchile/provider-jet-mongodba/apis/org/v1alpha1"
+	v1alpha1private "github.com/timgchile/provider-jet-mongodba/apis/private/v1alpha1"
+	v1alpha1privatelink "github.com/timgchile/provider-jet-mongodba/apis/privatelink/v1alpha1"
+	v1alpha1project "github.com/timgchile/provider-jet-mongodba/apis/project/v1alpha1"
+	v1alpha1search "github.com/timgchile/provider-jet-mongodba/apis/search/v1alpha1"
+	v1alpha1third "github.com/timgchile/provider-jet-mongodba/apis/third/v1alpha1"
+	v1alpha1apis "github.com/timgchile/provider-jet-mongodba/apis/v1alpha1"
+	v1alpha1x509 "github.com/timgchile/provider-jet-mongodba/apis/x509/v1alpha1"
 )
 
 func init() {
 	// Register the types with the Scheme so the components can map objects to GroupVersionKinds and back
 	AddToSchemes = append(AddToSchemes,
 		v1alpha1.SchemeBuilder.AddToScheme,
+		v1alpha1alert.SchemeBuilder.AddToScheme,
+		v1alpha1cloud.SchemeBuilder.AddToScheme,
+		v1alpha1custom.SchemeBuilder.AddToScheme,
+		v1alpha1data.SchemeBuilder.AddToScheme,
+		v1alpha1database.SchemeBuilder.AddToScheme,
+		v1alpha1encryption.SchemeBuilder.AddToScheme,
+		v1alpha1event.SchemeBuilder.AddToScheme,
+		v1alpha1global.SchemeBuilder.AddToScheme,
+		v1alpha1ldap.SchemeBuilder.AddToScheme,
+		v1alpha1maintenance.SchemeBuilder.AddToScheme,
+		v1alpha1mongodbatlas.SchemeBuilder.AddToScheme,
+		v1alpha1network.SchemeBuilder.AddToScheme,
+		v1alpha1online.SchemeBuilder.AddToScheme,
+		v1alpha1org.SchemeBuilder.AddToScheme,
+		v1alpha1private.SchemeBuilder.AddToScheme,
+		v1alpha1privatelink.SchemeBuilder.AddToScheme,
+		v1alpha1project.SchemeBuilder.AddToScheme,
+		v1alpha1search.SchemeBuilder.AddToScheme,
+		v1alpha1third.SchemeBuilder.AddToScheme,
 		v1alpha1apis.SchemeBuilder.AddToScheme,
+		v1alpha1x509.SchemeBuilder.AddToScheme,
 	)
 }
 
