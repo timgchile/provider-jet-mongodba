@@ -63,29 +63,6 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  advancedConfiguration:
-                    items:
-                      properties:
-                        defaultReadConcern:
-                          type: string
-                        defaultWriteConcern:
-                          type: string
-                        failIndexKeyTooLong:
-                          type: boolean
-                        javascriptEnabled:
-                          type: boolean
-                        minimumEnabledTlsProtocol:
-                          type: string
-                        noTableScan:
-                          type: boolean
-                        oplogSizeMb:
-                          type: number
-                        sampleRefreshIntervalBiConnector:
-                          type: number
-                        sampleSizeBiConnector:
-                          type: number
-                      type: object
-                    type: array
                   backupEnabled:
                     type: boolean
                   biConnector:

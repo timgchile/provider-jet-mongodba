@@ -7,9 +7,9 @@ PROJECT_REPO := github.com/timgchile/$(PROJECT_NAME)
 export TERRAFORM_VERSION := 1.1.6
 
 export TERRAFORM_PROVIDER_SOURCE := mongodb/mongodbatlas
-export TERRAFORM_PROVIDER_VERSION := 1.3.0
+export TERRAFORM_PROVIDER_VERSION := 1.2.0
 export TERRAFORM_PROVIDER_DOWNLOAD_NAME := terraform-provider-mongodbatlas
-export TERRAFORM_PROVIDER_DOWNLOAD_URL_PREFIX := https://github.com/mongodb/terraform-provider-mongodbatlas/releases/download/v1.3.0
+export TERRAFORM_PROVIDER_DOWNLOAD_URL_PREFIX := https://github.com/mongodb/terraform-provider-mongodbatlas/releases/download/v1.2.0
 
 export BUILD_REGISTRY := us-central1-docker.pkg.dev/metises-com/crossplane
 export DOCKER_REGISTRY := us-central1-docker.pkg.dev/metises-com/crossplane

@@ -42,13 +42,7 @@ func GetProvider() *tjconfig.Provider {
 	}
 
 	pc := tjconfig.NewProviderWithSchema([]byte(providerSchema), resourcePrefix, modulePath,
-		tjconfig.WithDefaultResourceFn(defaultResourceFn),
-		tjconfig.WithIncludeList([]string{
-			"cluster$",
-			"project$",
-			"project_ip_access_list$",
-			"database_user$",
-		}))
+		tjconfig.WithDefaultResourceFn(defaultResourceFn))
 
 	for _, configure := range []func(provider *tjconfig.Provider){
 		// add custom config functions
