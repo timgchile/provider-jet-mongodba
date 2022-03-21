@@ -114,6 +114,8 @@ spec:
                     type: array
                   mongoDbMajorVersion:
                     type: string
+                  name:
+                    type: string
                   paused:
                     type: boolean
                   pitEnabled:
@@ -214,6 +216,7 @@ spec:
                     type: string
                 required:
                 - clusterType
+                - name
                 - projectId
                 - replicationSpecs
                 type: object

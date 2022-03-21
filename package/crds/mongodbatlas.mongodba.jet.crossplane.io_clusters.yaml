@@ -130,6 +130,8 @@ spec:
                     type: array
                   mongoDbMajorVersion:
                     type: string
+                  name:
+                    type: string
                   numShards:
                     type: number
                   paused:
@@ -193,6 +195,7 @@ spec:
                   versionReleaseSystem:
                     type: string
                 required:
+                - name
                 - projectId
                 - providerInstanceSizeName
                 - providerName

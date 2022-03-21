@@ -409,6 +409,11 @@ func (in *ClusterParameters) DeepCopyInto(out *ClusterParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
 	if in.NumShards != nil {
 		in, out := &in.NumShards, &out.NumShards
 		*out = new(float64)
@@ -961,6 +966,11 @@ func (in *ProjectParameters) DeepCopyInto(out *ProjectParameters) {
 		for i := range *in {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
+	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
 	}
 	if in.OrgID != nil {
 		in, out := &in.OrgID, &out.OrgID
