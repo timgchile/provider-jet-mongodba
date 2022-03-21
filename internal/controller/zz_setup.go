@@ -22,46 +22,11 @@ import (
 	"github.com/crossplane/terrajet/pkg/controller"
 
 	cluster "github.com/timgchile/provider-jet-mongodba/internal/controller/advanced/cluster"
-	configuration "github.com/timgchile/provider-jet-mongodba/internal/controller/alert/configuration"
-	backupschedule "github.com/timgchile/provider-jet-mongodba/internal/controller/cloud/backupschedule"
-	backupsnapshot "github.com/timgchile/provider-jet-mongodba/internal/controller/cloud/backupsnapshot"
-	backupsnapshotexportbucket "github.com/timgchile/provider-jet-mongodba/internal/controller/cloud/backupsnapshotexportbucket"
-	backupsnapshotexportjob "github.com/timgchile/provider-jet-mongodba/internal/controller/cloud/backupsnapshotexportjob"
-	backupsnapshotrestorejob "github.com/timgchile/provider-jet-mongodba/internal/controller/cloud/backupsnapshotrestorejob"
-	provideraccess "github.com/timgchile/provider-jet-mongodba/internal/controller/cloud/provideraccess"
-	provideraccessauthorization "github.com/timgchile/provider-jet-mongodba/internal/controller/cloud/provideraccessauthorization"
-	provideraccesssetup "github.com/timgchile/provider-jet-mongodba/internal/controller/cloud/provideraccesssetup"
-	providersnapshot "github.com/timgchile/provider-jet-mongodba/internal/controller/cloud/providersnapshot"
-	providersnapshotbackuppolicy "github.com/timgchile/provider-jet-mongodba/internal/controller/cloud/providersnapshotbackuppolicy"
-	providersnapshotrestorejob "github.com/timgchile/provider-jet-mongodba/internal/controller/cloud/providersnapshotrestorejob"
-	dbrole "github.com/timgchile/provider-jet-mongodba/internal/controller/custom/dbrole"
-	dnsconfigurationclusteraws "github.com/timgchile/provider-jet-mongodba/internal/controller/custom/dnsconfigurationclusteraws"
-	lake "github.com/timgchile/provider-jet-mongodba/internal/controller/data/lake"
 	user "github.com/timgchile/provider-jet-mongodba/internal/controller/database/user"
-	atrest "github.com/timgchile/provider-jet-mongodba/internal/controller/encryption/atrest"
-	trigger "github.com/timgchile/provider-jet-mongodba/internal/controller/event/trigger"
-	clusterconfig "github.com/timgchile/provider-jet-mongodba/internal/controller/global/clusterconfig"
-	configurationldap "github.com/timgchile/provider-jet-mongodba/internal/controller/ldap/configuration"
-	verify "github.com/timgchile/provider-jet-mongodba/internal/controller/ldap/verify"
-	window "github.com/timgchile/provider-jet-mongodba/internal/controller/maintenance/window"
-	auditing "github.com/timgchile/provider-jet-mongodba/internal/controller/mongodbatlas/auditing"
 	clustermongodbatlas "github.com/timgchile/provider-jet-mongodba/internal/controller/mongodbatlas/cluster"
 	project "github.com/timgchile/provider-jet-mongodba/internal/controller/mongodbatlas/project"
-	team "github.com/timgchile/provider-jet-mongodba/internal/controller/mongodbatlas/team"
-	teams "github.com/timgchile/provider-jet-mongodba/internal/controller/mongodbatlas/teams"
-	container "github.com/timgchile/provider-jet-mongodba/internal/controller/network/container"
-	peering "github.com/timgchile/provider-jet-mongodba/internal/controller/network/peering"
-	archive "github.com/timgchile/provider-jet-mongodba/internal/controller/online/archive"
-	invitation "github.com/timgchile/provider-jet-mongodba/internal/controller/org/invitation"
-	ipmode "github.com/timgchile/provider-jet-mongodba/internal/controller/private/ipmode"
-	endpoint "github.com/timgchile/provider-jet-mongodba/internal/controller/privatelink/endpoint"
-	endpointservice "github.com/timgchile/provider-jet-mongodba/internal/controller/privatelink/endpointservice"
-	endpointserviceadl "github.com/timgchile/provider-jet-mongodba/internal/controller/privatelink/endpointserviceadl"
-	invitationproject "github.com/timgchile/provider-jet-mongodba/internal/controller/project/invitation"
 	ipaccesslist "github.com/timgchile/provider-jet-mongodba/internal/controller/project/ipaccesslist"
 	providerconfig "github.com/timgchile/provider-jet-mongodba/internal/controller/providerconfig"
-	index "github.com/timgchile/provider-jet-mongodba/internal/controller/search/index"
-	partyintegration "github.com/timgchile/provider-jet-mongodba/internal/controller/third/partyintegration"
 	authenticationdatabaseuser "github.com/timgchile/provider-jet-mongodba/internal/controller/x509/authenticationdatabaseuser"
 )
 
@@ -70,46 +35,11 @@ import (
 func Setup(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
 		cluster.Setup,
-		configuration.Setup,
-		backupschedule.Setup,
-		backupsnapshot.Setup,
-		backupsnapshotexportbucket.Setup,
-		backupsnapshotexportjob.Setup,
-		backupsnapshotrestorejob.Setup,
-		provideraccess.Setup,
-		provideraccessauthorization.Setup,
-		provideraccesssetup.Setup,
-		providersnapshot.Setup,
-		providersnapshotbackuppolicy.Setup,
-		providersnapshotrestorejob.Setup,
-		dbrole.Setup,
-		dnsconfigurationclusteraws.Setup,
-		lake.Setup,
 		user.Setup,
-		atrest.Setup,
-		trigger.Setup,
-		clusterconfig.Setup,
-		configurationldap.Setup,
-		verify.Setup,
-		window.Setup,
-		auditing.Setup,
 		clustermongodbatlas.Setup,
 		project.Setup,
-		team.Setup,
-		teams.Setup,
-		container.Setup,
-		peering.Setup,
-		archive.Setup,
-		invitation.Setup,
-		ipmode.Setup,
-		endpoint.Setup,
-		endpointservice.Setup,
-		endpointserviceadl.Setup,
-		invitationproject.Setup,
 		ipaccesslist.Setup,
 		providerconfig.Setup,
-		index.Setup,
-		partyintegration.Setup,
 		authenticationdatabaseuser.Setup,
 	} {
 		if err := setup(mgr, o); err != nil {
