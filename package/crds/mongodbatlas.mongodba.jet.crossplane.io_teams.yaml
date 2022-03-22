@@ -13,10 +13,10 @@ spec:
     - crossplane
     - managed
     - mongodbajet
-    kind: Teams
-    listKind: TeamsList
+    kind: Team
+    listKind: TeamList
     plural: teams
-    singular: teams
+    singular: team
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Teams is the Schema for the Teamss API
+        description: Team is the Schema for the Teams API
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +50,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: TeamsSpec defines the desired state of Teams
+            description: TeamSpec defines the desired state of Team
             properties:
               deletionPolicy:
                 default: Delete
@@ -121,7 +121,7 @@ spec:
             - forProvider
             type: object
           status:
-            description: TeamsStatus defines the observed state of Teams.
+            description: TeamStatus defines the observed state of Team.
             properties:
               atProvider:
                 properties:
