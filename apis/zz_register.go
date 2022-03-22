@@ -28,7 +28,6 @@ import (
 	v1alpha1custom "github.com/timgchile/provider-jet-mongodba/apis/custom/v1alpha1"
 	v1alpha1data "github.com/timgchile/provider-jet-mongodba/apis/data/v1alpha1"
 	v1alpha1database "github.com/timgchile/provider-jet-mongodba/apis/database/v1alpha1"
-	v1alpha1encryption "github.com/timgchile/provider-jet-mongodba/apis/encryption/v1alpha1"
 	v1alpha1event "github.com/timgchile/provider-jet-mongodba/apis/event/v1alpha1"
 	v1alpha1global "github.com/timgchile/provider-jet-mongodba/apis/global/v1alpha1"
 	v1alpha1ldap "github.com/timgchile/provider-jet-mongodba/apis/ldap/v1alpha1"
@@ -55,7 +54,6 @@ func init() {
 		v1alpha1custom.SchemeBuilder.AddToScheme,
 		v1alpha1data.SchemeBuilder.AddToScheme,
 		v1alpha1database.SchemeBuilder.AddToScheme,
-		v1alpha1encryption.SchemeBuilder.AddToScheme,
 		v1alpha1event.SchemeBuilder.AddToScheme,
 		v1alpha1global.SchemeBuilder.AddToScheme,
 		v1alpha1ldap.SchemeBuilder.AddToScheme,

@@ -36,7 +36,6 @@ import (
 	dnsconfigurationclusteraws "github.com/timgchile/provider-jet-mongodba/internal/controller/custom/dnsconfigurationclusteraws"
 	lake "github.com/timgchile/provider-jet-mongodba/internal/controller/data/lake"
 	user "github.com/timgchile/provider-jet-mongodba/internal/controller/database/user"
-	atrest "github.com/timgchile/provider-jet-mongodba/internal/controller/encryption/atrest"
 	trigger "github.com/timgchile/provider-jet-mongodba/internal/controller/event/trigger"
 	clusterconfig "github.com/timgchile/provider-jet-mongodba/internal/controller/global/clusterconfig"
 	configurationldap "github.com/timgchile/provider-jet-mongodba/internal/controller/ldap/configuration"
@@ -46,7 +45,6 @@ import (
 	clustermongodbatlas "github.com/timgchile/provider-jet-mongodba/internal/controller/mongodbatlas/cluster"
 	project "github.com/timgchile/provider-jet-mongodba/internal/controller/mongodbatlas/project"
 	team "github.com/timgchile/provider-jet-mongodba/internal/controller/mongodbatlas/team"
-	teams "github.com/timgchile/provider-jet-mongodba/internal/controller/mongodbatlas/teams"
 	container "github.com/timgchile/provider-jet-mongodba/internal/controller/network/container"
 	peering "github.com/timgchile/provider-jet-mongodba/internal/controller/network/peering"
 	archive "github.com/timgchile/provider-jet-mongodba/internal/controller/online/archive"
@@ -82,7 +80,6 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		dnsconfigurationclusteraws.Setup,
 		lake.Setup,
 		user.Setup,
-		atrest.Setup,
 		trigger.Setup,
 		clusterconfig.Setup,
 		configurationldap.Setup,
@@ -92,7 +89,6 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		clustermongodbatlas.Setup,
 		project.Setup,
 		team.Setup,
-		teams.Setup,
 		container.Setup,
 		peering.Setup,
 		archive.Setup,
