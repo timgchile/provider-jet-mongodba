@@ -25,6 +25,73 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
+type AdvancedClusterObservation struct {
+	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
+
+	ConnectionStrings []ConnectionStringsObservation `json:"connectionStrings,omitempty" tf:"connection_strings,omitempty"`
+
+	CreateDate *string `json:"createDate,omitempty" tf:"create_date,omitempty"`
+
+	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	MongoDBVersion *string `json:"mongoDbVersion,omitempty" tf:"mongo_db_version,omitempty"`
+
+	StateName *string `json:"stateName,omitempty" tf:"state_name,omitempty"`
+}
+
+type AdvancedClusterParameters struct {
+
+	// +kubebuilder:validation:Optional
+	BackupEnabled *bool `json:"backupEnabled,omitempty" tf:"backup_enabled,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	BiConnector []BiConnectorParameters `json:"biConnector,omitempty" tf:"bi_connector,omitempty"`
+
+	// +kubebuilder:validation:Required
+	ClusterType *string `json:"clusterType" tf:"cluster_type,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	DiskSizeGb *float64 `json:"diskSizeGb,omitempty" tf:"disk_size_gb,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	EncryptionAtRestProvider *string `json:"encryptionAtRestProvider,omitempty" tf:"encryption_at_rest_provider,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Labels []LabelsParameters `json:"labels,omitempty" tf:"labels,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	MongoDBMajorVersion *string `json:"mongoDbMajorVersion,omitempty" tf:"mongo_db_major_version,omitempty"`
+
+	// +kubebuilder:validation:Required
+	Name *string `json:"name" tf:"name,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Paused *bool `json:"paused,omitempty" tf:"paused,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	PitEnabled *bool `json:"pitEnabled,omitempty" tf:"pit_enabled,omitempty"`
+
+	// +crossplane:generate:reference:type=Project
+	// +crossplane:generate:reference:extractor=github.com/timgchile/provider-jet-mongodba/config/common.ExtractResourceID()
+	// +kubebuilder:validation:Optional
+	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	ProjectIDRef *v1.Reference `json:"projectIdRef,omitempty" tf:"-"`
+
+	// +kubebuilder:validation:Optional
+	ProjectIDSelector *v1.Selector `json:"projectIdSelector,omitempty" tf:"-"`
+
+	// +kubebuilder:validation:Required
+	ReplicationSpecs []ReplicationSpecsParameters `json:"replicationSpecs" tf:"replication_specs,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	RootCertType *string `json:"rootCertType,omitempty" tf:"root_cert_type,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	VersionReleaseSystem *string `json:"versionReleaseSystem,omitempty" tf:"version_release_system,omitempty"`
+}
+
 type AnalyticsSpecsObservation struct {
 }
 
@@ -74,65 +141,6 @@ type BiConnectorParameters struct {
 
 	// +kubebuilder:validation:Optional
 	ReadPreference *string `json:"readPreference,omitempty" tf:"read_preference,omitempty"`
-}
-
-type ClusterObservation struct {
-	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
-
-	ConnectionStrings []ConnectionStringsObservation `json:"connectionStrings,omitempty" tf:"connection_strings,omitempty"`
-
-	CreateDate *string `json:"createDate,omitempty" tf:"create_date,omitempty"`
-
-	ID *string `json:"id,omitempty" tf:"id,omitempty"`
-
-	MongoDBVersion *string `json:"mongoDbVersion,omitempty" tf:"mongo_db_version,omitempty"`
-
-	StateName *string `json:"stateName,omitempty" tf:"state_name,omitempty"`
-}
-
-type ClusterParameters struct {
-
-	// +kubebuilder:validation:Optional
-	BackupEnabled *bool `json:"backupEnabled,omitempty" tf:"backup_enabled,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	BiConnector []BiConnectorParameters `json:"biConnector,omitempty" tf:"bi_connector,omitempty"`
-
-	// +kubebuilder:validation:Required
-	ClusterType *string `json:"clusterType" tf:"cluster_type,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	DiskSizeGb *float64 `json:"diskSizeGb,omitempty" tf:"disk_size_gb,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	EncryptionAtRestProvider *string `json:"encryptionAtRestProvider,omitempty" tf:"encryption_at_rest_provider,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Labels []LabelsParameters `json:"labels,omitempty" tf:"labels,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	MongoDBMajorVersion *string `json:"mongoDbMajorVersion,omitempty" tf:"mongo_db_major_version,omitempty"`
-
-	// +kubebuilder:validation:Required
-	Name *string `json:"name" tf:"name,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Paused *bool `json:"paused,omitempty" tf:"paused,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	PitEnabled *bool `json:"pitEnabled,omitempty" tf:"pit_enabled,omitempty"`
-
-	// +kubebuilder:validation:Required
-	ProjectID *string `json:"projectId" tf:"project_id,omitempty"`
-
-	// +kubebuilder:validation:Required
-	ReplicationSpecs []ReplicationSpecsParameters `json:"replicationSpecs" tf:"replication_specs,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	RootCertType *string `json:"rootCertType,omitempty" tf:"root_cert_type,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	VersionReleaseSystem *string `json:"versionReleaseSystem,omitempty" tf:"version_release_system,omitempty"`
 }
 
 type ConnectionStringsObservation struct {
@@ -289,51 +297,51 @@ type ReplicationSpecsParameters struct {
 	ZoneName *string `json:"zoneName,omitempty" tf:"zone_name,omitempty"`
 }
 
-// ClusterSpec defines the desired state of Cluster
-type ClusterSpec struct {
+// AdvancedClusterSpec defines the desired state of AdvancedCluster
+type AdvancedClusterSpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     ClusterParameters `json:"forProvider"`
+	ForProvider     AdvancedClusterParameters `json:"forProvider"`
 }
 
-// ClusterStatus defines the observed state of Cluster.
-type ClusterStatus struct {
+// AdvancedClusterStatus defines the observed state of AdvancedCluster.
+type AdvancedClusterStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        ClusterObservation `json:"atProvider,omitempty"`
+	AtProvider        AdvancedClusterObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// Cluster is the Schema for the Clusters API
+// AdvancedCluster is the Schema for the AdvancedClusters API
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,mongodbajet}
-type Cluster struct {
+type AdvancedCluster struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	Spec              ClusterSpec   `json:"spec"`
-	Status            ClusterStatus `json:"status,omitempty"`
+	Spec              AdvancedClusterSpec   `json:"spec"`
+	Status            AdvancedClusterStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// ClusterList contains a list of Clusters
-type ClusterList struct {
+// AdvancedClusterList contains a list of AdvancedClusters
+type AdvancedClusterList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []Cluster `json:"items"`
+	Items           []AdvancedCluster `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	Cluster_Kind             = "Cluster"
-	Cluster_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: Cluster_Kind}.String()
-	Cluster_KindAPIVersion   = Cluster_Kind + "." + CRDGroupVersion.String()
-	Cluster_GroupVersionKind = CRDGroupVersion.WithKind(Cluster_Kind)
+	AdvancedCluster_Kind             = "AdvancedCluster"
+	AdvancedCluster_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: AdvancedCluster_Kind}.String()
+	AdvancedCluster_KindAPIVersion   = AdvancedCluster_Kind + "." + CRDGroupVersion.String()
+	AdvancedCluster_GroupVersionKind = CRDGroupVersion.WithKind(AdvancedCluster_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&Cluster{}, &ClusterList{})
+	SchemeBuilder.Register(&AdvancedCluster{}, &AdvancedClusterList{})
 }
