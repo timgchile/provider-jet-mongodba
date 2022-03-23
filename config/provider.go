@@ -20,7 +20,7 @@ import (
 	// Note(turkenh): we are importing this to embed provider schema document
 	_ "embed"
 	"github.com/timgchile/provider-jet-mongodba/config/database"
-	"github.com/timgchile/provider-jet-mongodba/config/mongodbatlas"
+	"github.com/timgchile/provider-jet-mongodba/config/mongodba"
 	"github.com/timgchile/provider-jet-mongodba/config/project"
 
 	tjconfig "github.com/crossplane/terrajet/pkg/config"
@@ -49,14 +49,14 @@ func GetProvider() *tjconfig.Provider {
 		tjconfig.WithDefaultResourceFn(DefaultResource(
 			groupKindOverrides(),
 			identifierAssignedByMongoDBAtlas(),
-			commonReferences(),
+			// commonReferences(),
 		)),
 		tjconfig.WithSkipList([]string{"mongodbatlas_encryption_at_rest", "mongodbatlas_teams"}),
 	)
 
 	for _, configure := range []func(provider *tjconfig.Provider){
 		// add custom config functions
-		mongodbatlas.Configure,
+		mongodba.Configure,
 		database.Configure,
 		project.Configure,
 	} {

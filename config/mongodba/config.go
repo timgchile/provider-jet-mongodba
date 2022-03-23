@@ -1,5 +1,5 @@
 /*
-Copyright 2022 The Crossplane Authors.
+Copyright 2021 The Crossplane Authors.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package database
+package mongodba
 
 import (
 	"github.com/crossplane/terrajet/pkg/config"
@@ -23,8 +23,7 @@ import (
 
 // Configure configures the root group
 func Configure(p *config.Provider) {
-	p.AddResourceConfigurator("mongodbatlas_database_user", func(r *config.Resource) {
-
+	p.AddResourceConfigurator("mongodbatlas_cluster", func(r *config.Resource) {
 		for k, s := range r.TerraformResource.Schema {
 			// We shouldn't add referencers for status fields and sensitive fields
 			// since they already have secret referencer.
@@ -44,8 +43,28 @@ func Configure(p *config.Provider) {
 			}
 		}
 
-		r.LateInitializer = config.LateInitializer{
-			IgnoredFields: []string{"x509_type", "ldap_auth_type", "aws_iam_type"},
+		r.UseAsync = true
+	})
+	p.AddResourceConfigurator("mongodbatlas_advanced_cluster", func(r *config.Resource) {
+		for k, s := range r.TerraformResource.Schema {
+			// We shouldn't add referencers for status fields and sensitive fields
+			// since they already have secret referencer.
+			if (s.Computed && !s.Optional) || s.Sensitive {
+				continue
+			}
+
+			if k == "project_id" {
+				ref := config.Reference{
+					Type:      common.APISPackagePath + "/mongodbatlas/v1alpha1.Project",
+					Extractor: common.ExtractResourceIDFuncPath,
+				}
+				if r.ShortGroup == "" {
+					ref.Type = "Project"
+				}
+				r.References["project_id"] = ref
+			}
 		}
+
+		r.UseAsync = true
 	})
 }

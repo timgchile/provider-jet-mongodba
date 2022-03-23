@@ -52,16 +52,8 @@ type PartyIntegrationParameters struct {
 	// +kubebuilder:validation:Optional
 	OrgName *string `json:"orgName,omitempty" tf:"org_name,omitempty"`
 
-	// +crossplane:generate:reference:type=github.com/timgchile/provider-jet-mongodba/apis/mongodbatlas/v1alpha1.Project
-	// +crossplane:generate:reference:extractor=github.com/timgchile/provider-jet-mongodba/config/common.ExtractResourceID()
-	// +kubebuilder:validation:Optional
-	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	ProjectIDRef *v1.Reference `json:"projectIdRef,omitempty" tf:"-"`
-
-	// +kubebuilder:validation:Optional
-	ProjectIDSelector *v1.Selector `json:"projectIdSelector,omitempty" tf:"-"`
+	// +kubebuilder:validation:Required
+	ProjectID *string `json:"projectId" tf:"project_id,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	ReadTokenSecretRef *v1.SecretKeySelector `json:"readTokenSecretRef,omitempty" tf:"-"`
