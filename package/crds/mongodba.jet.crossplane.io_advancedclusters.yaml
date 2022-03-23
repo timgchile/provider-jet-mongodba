@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: clusters.advanced.mongodba.jet.crossplane.io
+  name: advancedclusters.mongodba.jet.crossplane.io
 spec:
-  group: advanced.mongodba.jet.crossplane.io
+  group: mongodba.jet.crossplane.io
   names:
     categories:
     - crossplane
     - managed
     - mongodbajet
-    kind: Cluster
-    listKind: ClusterList
-    plural: clusters
-    singular: cluster
+    kind: AdvancedCluster
+    listKind: AdvancedClusterList
+    plural: advancedclusters
+    singular: advancedcluster
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Cluster is the Schema for the Clusters API
+        description: AdvancedCluster is the Schema for the AdvancedClusters API
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +50,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: ClusterSpec defines the desired state of Cluster
+            description: AdvancedClusterSpec defines the desired state of AdvancedCluster
             properties:
               deletionPolicy:
                 default: Delete
@@ -264,7 +264,7 @@ spec:
             - forProvider
             type: object
           status:
-            description: ClusterStatus defines the observed state of Cluster.
+            description: AdvancedClusterStatus defines the observed state of AdvancedCluster.
             properties:
               atProvider:
                 properties:

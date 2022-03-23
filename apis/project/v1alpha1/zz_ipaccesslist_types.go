@@ -43,7 +43,7 @@ type IPAccessListParameters struct {
 	// +kubebuilder:validation:Optional
 	IPAddress *string `json:"ipAddress,omitempty" tf:"ip_address,omitempty"`
 
-	// +crossplane:generate:reference:type=github.com/timgchile/provider-jet-mongodba/apis/mongodbatlas/v1alpha1.Project
+	// +crossplane:generate:reference:type=github.com/timgchile/provider-jet-mongodba/apis/mongodba/v1alpha1.Project
 	// +crossplane:generate:reference:extractor=github.com/timgchile/provider-jet-mongodba/config/common.ExtractResourceID()
 	// +kubebuilder:validation:Optional
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`

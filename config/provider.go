@@ -37,27 +37,27 @@ var providerSchema string
 
 // GetProvider returns provider configuration
 func GetProvider() *tjconfig.Provider {
-	defaultResourceFn := func(name string, terraformResource *schema.Resource, opts ...tjconfig.ResourceOption) *tjconfig.Resource {
-		r := tjconfig.DefaultResource(name, terraformResource)
-		// Add any provider-specific defaulting here. For example:
-		r.ExternalName = tjconfig.IdentifierFromProvider
-
-		return r
-	}
-
-	pc := tjconfig.NewProviderWithSchema([]byte(providerSchema), resourcePrefix, modulePath,
-		tjconfig.WithDefaultResourceFn(defaultResourceFn),
-		tjconfig.WithSkipList([]string{"mongodbatlas_encryption_at_rest", "mongodbatlas_teams"}),
-	)
-
+	//defaultResourceFn := func(name string, terraformResource *schema.Resource, opts ...tjconfig.ResourceOption) *tjconfig.Resource {
+	//	r := tjconfig.DefaultResource(name, terraformResource)
+	//	// Add any provider-specific defaulting here. For example:
+	//	r.ExternalName = tjconfig.IdentifierFromProvider
+	//
+	//	return r
+	//}
+	//
 	//pc := tjconfig.NewProviderWithSchema([]byte(providerSchema), resourcePrefix, modulePath,
-	//	tjconfig.WithDefaultResourceFn(DefaultResource(
-	//		groupKindOverrides(),
-	//		identifierAssignedByMongoDBAtlas(),
-	//		// commonReferences(),
-	//	)),
+	//	tjconfig.WithDefaultResourceFn(defaultResourceFn),
 	//	tjconfig.WithSkipList([]string{"mongodbatlas_encryption_at_rest", "mongodbatlas_teams"}),
 	//)
+
+	pc := tjconfig.NewProviderWithSchema([]byte(providerSchema), resourcePrefix, modulePath,
+		tjconfig.WithDefaultResourceFn(DefaultResource(
+			groupKindOverrides(),
+			identifierAssignedByMongoDBAtlas(),
+			commonReferences(),
+		)),
+		tjconfig.WithSkipList([]string{"mongodbatlas_encryption_at_rest", "mongodbatlas_teams"}),
+	)
 
 	for _, configure := range []func(provider *tjconfig.Provider){
 		// add custom config functions

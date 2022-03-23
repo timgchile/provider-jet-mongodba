@@ -29,7 +29,7 @@ import (
 	"github.com/crossplane/terrajet/pkg/terraform"
 	ctrl "sigs.k8s.io/controller-runtime"
 
-	v1alpha1 "github.com/timgchile/provider-jet-mongodba/apis/mongodbatlas/v1alpha1"
+	v1alpha1 "github.com/timgchile/provider-jet-mongodba/apis/mongodba/v1alpha1"
 )
 
 // Setup adds a controller that reconciles Project managed resources.

@@ -49,7 +49,7 @@ func commonReferences() tjconfig.ResourceOption {
 
 			if k == "project_id" {
 				ref := tjconfig.Reference{
-					Type:      common.APISPackagePath + "/mongodbatlas/v1alpha1.Project",
+					Type:      common.APISPackagePath + "/mongodba/v1alpha1.Project",
 					Extractor: common.ExtractResourceIDFuncPath,
 				}
 				if r.ShortGroup == "" {

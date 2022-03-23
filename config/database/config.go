@@ -18,32 +18,11 @@ package database
 
 import (
 	"github.com/crossplane/terrajet/pkg/config"
-	"github.com/timgchile/provider-jet-mongodba/config/common"
 )
 
 // Configure configures the root group
 func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("mongodbatlas_database_user", func(r *config.Resource) {
-
-		for k, s := range r.TerraformResource.Schema {
-			// We shouldn't add referencers for status fields and sensitive fields
-			// since they already have secret referencer.
-			if (s.Computed && !s.Optional) || s.Sensitive {
-				continue
-			}
-
-			if k == "project_id" {
-				ref := config.Reference{
-					Type:      common.APISPackagePath + "/mongodbatlas/v1alpha1.Project",
-					Extractor: common.ExtractResourceIDFuncPath,
-				}
-				if r.ShortGroup == "" {
-					ref.Type = "Project"
-				}
-				r.References["project_id"] = ref
-			}
-		}
-
 		r.LateInitializer = config.LateInitializer{
 			IgnoredFields: []string{"x509_type", "ldap_auth_type", "aws_iam_type"},
 		}

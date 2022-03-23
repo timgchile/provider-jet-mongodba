@@ -21,10 +21,36 @@ import (
 	"context"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
 	errors "github.com/pkg/errors"
-	v1alpha1 "github.com/timgchile/provider-jet-mongodba/apis/mongodbatlas/v1alpha1"
+	v1alpha1 "github.com/timgchile/provider-jet-mongodba/apis/mongodba/v1alpha1"
 	common "github.com/timgchile/provider-jet-mongodba/config/common"
 	client "sigs.k8s.io/controller-runtime/pkg/client"
 )
+
+// ResolveReferences of this Auditing.
+func (mg *Auditing) ResolveReferences(ctx context.Context, c client.Reader) error {
+	r := reference.NewAPIResolver(c, mg)
+
+	var rsp reference.ResolutionResponse
+	var err error
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.ProjectID),
+		Extract:      common.ExtractResourceID(),
+		Reference:    mg.Spec.ForProvider.ProjectIDRef,
+		Selector:     mg.Spec.ForProvider.ProjectIDSelector,
+		To: reference.To{
+			List:    &v1alpha1.ProjectList{},
+			Managed: &v1alpha1.Project{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.ProjectID")
+	}
+	mg.Spec.ForProvider.ProjectID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.ProjectIDRef = rsp.ResolvedReference
+
+	return nil
+}
 
 // ResolveReferences of this Cluster.
 func (mg *Cluster) ResolveReferences(ctx context.Context, c client.Reader) error {

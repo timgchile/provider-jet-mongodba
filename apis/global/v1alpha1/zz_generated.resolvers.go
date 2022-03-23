@@ -21,13 +21,13 @@ import (
 	"context"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
 	errors "github.com/pkg/errors"
-	v1alpha1 "github.com/timgchile/provider-jet-mongodba/apis/mongodbatlas/v1alpha1"
+	v1alpha1 "github.com/timgchile/provider-jet-mongodba/apis/mongodba/v1alpha1"
 	common "github.com/timgchile/provider-jet-mongodba/config/common"
 	client "sigs.k8s.io/controller-runtime/pkg/client"
 )
 
-// ResolveReferences of this Cluster.
-func (mg *Cluster) ResolveReferences(ctx context.Context, c client.Reader) error {
+// ResolveReferences of this ClusterConfig.
+func (mg *ClusterConfig) ResolveReferences(ctx context.Context, c client.Reader) error {
 	r := reference.NewAPIResolver(c, mg)
 
 	var rsp reference.ResolutionResponse

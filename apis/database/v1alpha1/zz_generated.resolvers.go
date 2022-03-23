@@ -21,7 +21,7 @@ import (
 	"context"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
 	errors "github.com/pkg/errors"
-	v1alpha1 "github.com/timgchile/provider-jet-mongodba/apis/mongodbatlas/v1alpha1"
+	v1alpha1 "github.com/timgchile/provider-jet-mongodba/apis/mongodba/v1alpha1"
 	common "github.com/timgchile/provider-jet-mongodba/config/common"
 	client "sigs.k8s.io/controller-runtime/pkg/client"
 )
