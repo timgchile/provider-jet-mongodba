@@ -26,5 +26,6 @@ func Configure(p *config.Provider) {
 		r.LateInitializer = config.LateInitializer{
 			IgnoredFields: []string{"x509_type", "ldap_auth_type", "aws_iam_type"},
 		}
+		r.UseAsync = true
 	})
 }

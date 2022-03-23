@@ -30,5 +30,6 @@ func Configure(p *config.Provider) {
 		r.LateInitializer = config.LateInitializer{
 			IgnoredFields: []string{"ip_address"},
 		}
+		r.UseAsync = true
 	})
 }
