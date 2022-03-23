@@ -22,7 +22,8 @@ package apis
 import (
 	"k8s.io/apimachinery/pkg/runtime"
 
-	v1alpha1 "github.com/timgchile/provider-jet-mongodba/apis/alert/v1alpha1"
+	v1alpha1 "github.com/timgchile/provider-jet-mongodba/apis/advanced/v1alpha1"
+	v1alpha1alert "github.com/timgchile/provider-jet-mongodba/apis/alert/v1alpha1"
 	v1alpha1cloud "github.com/timgchile/provider-jet-mongodba/apis/cloud/v1alpha1"
 	v1alpha1custom "github.com/timgchile/provider-jet-mongodba/apis/custom/v1alpha1"
 	v1alpha1data "github.com/timgchile/provider-jet-mongodba/apis/data/v1alpha1"
@@ -31,7 +32,6 @@ import (
 	v1alpha1global "github.com/timgchile/provider-jet-mongodba/apis/global/v1alpha1"
 	v1alpha1ldap "github.com/timgchile/provider-jet-mongodba/apis/ldap/v1alpha1"
 	v1alpha1maintenance "github.com/timgchile/provider-jet-mongodba/apis/maintenance/v1alpha1"
-	v1alpha1mongodba "github.com/timgchile/provider-jet-mongodba/apis/mongodba/v1alpha1"
 	v1alpha1mongodbatlas "github.com/timgchile/provider-jet-mongodba/apis/mongodbatlas/v1alpha1"
 	v1alpha1network "github.com/timgchile/provider-jet-mongodba/apis/network/v1alpha1"
 	v1alpha1online "github.com/timgchile/provider-jet-mongodba/apis/online/v1alpha1"
@@ -49,6 +49,7 @@ func init() {
 	// Register the types with the Scheme so the components can map objects to GroupVersionKinds and back
 	AddToSchemes = append(AddToSchemes,
 		v1alpha1.SchemeBuilder.AddToScheme,
+		v1alpha1alert.SchemeBuilder.AddToScheme,
 		v1alpha1cloud.SchemeBuilder.AddToScheme,
 		v1alpha1custom.SchemeBuilder.AddToScheme,
 		v1alpha1data.SchemeBuilder.AddToScheme,
@@ -57,7 +58,6 @@ func init() {
 		v1alpha1global.SchemeBuilder.AddToScheme,
 		v1alpha1ldap.SchemeBuilder.AddToScheme,
 		v1alpha1maintenance.SchemeBuilder.AddToScheme,
-		v1alpha1mongodba.SchemeBuilder.AddToScheme,
 		v1alpha1mongodbatlas.SchemeBuilder.AddToScheme,
 		v1alpha1network.SchemeBuilder.AddToScheme,
 		v1alpha1online.SchemeBuilder.AddToScheme,

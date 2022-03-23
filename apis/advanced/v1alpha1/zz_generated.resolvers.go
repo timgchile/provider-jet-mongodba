@@ -21,12 +21,13 @@ import (
 	"context"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
 	errors "github.com/pkg/errors"
+	v1alpha1 "github.com/timgchile/provider-jet-mongodba/apis/mongodbatlas/v1alpha1"
 	common "github.com/timgchile/provider-jet-mongodba/config/common"
 	client "sigs.k8s.io/controller-runtime/pkg/client"
 )
 
-// ResolveReferences of this AdvancedCluster.
-func (mg *AdvancedCluster) ResolveReferences(ctx context.Context, c client.Reader) error {
+// ResolveReferences of this Cluster.
+func (mg *Cluster) ResolveReferences(ctx context.Context, c client.Reader) error {
 	r := reference.NewAPIResolver(c, mg)
 
 	var rsp reference.ResolutionResponse
@@ -38,8 +39,8 @@ func (mg *AdvancedCluster) ResolveReferences(ctx context.Context, c client.Reade
 		Reference:    mg.Spec.ForProvider.ProjectIDRef,
 		Selector:     mg.Spec.ForProvider.ProjectIDSelector,
 		To: reference.To{
-			List:    &ProjectList{},
-			Managed: &Project{},
+			List:    &v1alpha1.ProjectList{},
+			Managed: &v1alpha1.Project{},
 		},
 	})
 	if err != nil {
