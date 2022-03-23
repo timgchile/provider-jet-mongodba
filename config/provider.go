@@ -19,6 +19,9 @@ package config
 import (
 	// Note(turkenh): we are importing this to embed provider schema document
 	_ "embed"
+	"github.com/timgchile/provider-jet-mongodba/config/database"
+	"github.com/timgchile/provider-jet-mongodba/config/mongodbatlas"
+	"github.com/timgchile/provider-jet-mongodba/config/project"
 
 	tjconfig "github.com/crossplane/terrajet/pkg/config"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
@@ -34,24 +37,40 @@ var providerSchema string
 
 // GetProvider returns provider configuration
 func GetProvider() *tjconfig.Provider {
-	defaultResourceFn := func(name string, terraformResource *schema.Resource, opts ...tjconfig.ResourceOption) *tjconfig.Resource {
-		r := tjconfig.DefaultResource(name, terraformResource)
-		// Add any provider-specific defaulting here. For example:
-		r.ExternalName = tjconfig.IdentifierFromProvider
-		return r
-	}
+	//defaultResourceFn := func(name string, terraformResource *schema.Resource, opts ...tjconfig.ResourceOption) *tjconfig.Resource {
+	//	r := tjconfig.DefaultResource(name, terraformResource)
+	//	// Add any provider-specific defaulting here. For example:
+	//	r.ExternalName = tjconfig.IdentifierFromProvider
+	//
+	//	return r
+	//}
 
 	pc := tjconfig.NewProviderWithSchema([]byte(providerSchema), resourcePrefix, modulePath,
-		tjconfig.WithDefaultResourceFn(defaultResourceFn),
+		tjconfig.WithDefaultResourceFn(DefaultResource(
+			groupKindOverrides(),
+			identifierAssignedByMongoDBAtlas(),
+			commonReferences(),
+		)),
 		tjconfig.WithSkipList([]string{"mongodbatlas_encryption_at_rest", "mongodbatlas_teams"}),
 	)
 
 	for _, configure := range []func(provider *tjconfig.Provider){
 		// add custom config functions
+		mongodbatlas.Configure,
+		database.Configure,
+		project.Configure,
 	} {
 		configure(pc)
 	}
 
 	pc.ConfigureResources()
 	return pc
+}
+
+// DefaultResource returns a DefaultResoruceFn that makes sure the original
+// DefaultResource call is made with given options here.
+func DefaultResource(opts ...tjconfig.ResourceOption) tjconfig.DefaultResourceFn {
+	return func(name string, terraformResource *schema.Resource, orgOpts ...tjconfig.ResourceOption) *tjconfig.Resource {
+		return tjconfig.DefaultResource(name, terraformResource, append(orgOpts, opts...)...)
+	}
 }

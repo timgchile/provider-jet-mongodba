@@ -21,7 +21,6 @@ import (
 
 	"github.com/crossplane/terrajet/pkg/controller"
 
-	cluster "github.com/timgchile/provider-jet-mongodba/internal/controller/advanced/cluster"
 	configuration "github.com/timgchile/provider-jet-mongodba/internal/controller/alert/configuration"
 	backupschedule "github.com/timgchile/provider-jet-mongodba/internal/controller/cloud/backupschedule"
 	backupsnapshot "github.com/timgchile/provider-jet-mongodba/internal/controller/cloud/backupsnapshot"
@@ -41,8 +40,9 @@ import (
 	configurationldap "github.com/timgchile/provider-jet-mongodba/internal/controller/ldap/configuration"
 	verify "github.com/timgchile/provider-jet-mongodba/internal/controller/ldap/verify"
 	window "github.com/timgchile/provider-jet-mongodba/internal/controller/maintenance/window"
+	advancedcluster "github.com/timgchile/provider-jet-mongodba/internal/controller/mongodba/advancedcluster"
 	auditing "github.com/timgchile/provider-jet-mongodba/internal/controller/mongodbatlas/auditing"
-	clustermongodbatlas "github.com/timgchile/provider-jet-mongodba/internal/controller/mongodbatlas/cluster"
+	cluster "github.com/timgchile/provider-jet-mongodba/internal/controller/mongodbatlas/cluster"
 	project "github.com/timgchile/provider-jet-mongodba/internal/controller/mongodbatlas/project"
 	team "github.com/timgchile/provider-jet-mongodba/internal/controller/mongodbatlas/team"
 	container "github.com/timgchile/provider-jet-mongodba/internal/controller/network/container"
@@ -65,7 +65,6 @@ import (
 // the supplied manager.
 func Setup(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
-		cluster.Setup,
 		configuration.Setup,
 		backupschedule.Setup,
 		backupsnapshot.Setup,
@@ -85,8 +84,9 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		configurationldap.Setup,
 		verify.Setup,
 		window.Setup,
+		advancedcluster.Setup,
 		auditing.Setup,
-		clustermongodbatlas.Setup,
+		cluster.Setup,
 		project.Setup,
 		team.Setup,
 		container.Setup,
