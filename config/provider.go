@@ -19,6 +19,7 @@ package config
 import (
 	// Note(turkenh): we are importing this to embed provider schema document
 	_ "embed"
+
 	"github.com/timgchile/provider-jet-mongodba/config/database"
 	"github.com/timgchile/provider-jet-mongodba/config/mongodba"
 	"github.com/timgchile/provider-jet-mongodba/config/project"
@@ -37,19 +38,6 @@ var providerSchema string
 
 // GetProvider returns provider configuration
 func GetProvider() *tjconfig.Provider {
-	//defaultResourceFn := func(name string, terraformResource *schema.Resource, opts ...tjconfig.ResourceOption) *tjconfig.Resource {
-	//	r := tjconfig.DefaultResource(name, terraformResource)
-	//	// Add any provider-specific defaulting here. For example:
-	//	r.ExternalName = tjconfig.IdentifierFromProvider
-	//
-	//	return r
-	//}
-	//
-	//pc := tjconfig.NewProviderWithSchema([]byte(providerSchema), resourcePrefix, modulePath,
-	//	tjconfig.WithDefaultResourceFn(defaultResourceFn),
-	//	tjconfig.WithSkipList([]string{"mongodbatlas_encryption_at_rest", "mongodbatlas_teams"}),
-	//)
-
 	pc := tjconfig.NewProviderWithSchema([]byte(providerSchema), resourcePrefix, modulePath,
 		tjconfig.WithDefaultResourceFn(DefaultResource(
 			groupKindOverrides(),
