@@ -24,6 +24,8 @@ import (
 	configuration "github.com/timgchile/provider-jet-mongodba/internal/controller/alert/configuration"
 	backupschedule "github.com/timgchile/provider-jet-mongodba/internal/controller/cloud/backupschedule"
 	backupsnapshot "github.com/timgchile/provider-jet-mongodba/internal/controller/cloud/backupsnapshot"
+	backupsnapshotexportbucket "github.com/timgchile/provider-jet-mongodba/internal/controller/cloud/backupsnapshotexportbucket"
+	backupsnapshotexportjob "github.com/timgchile/provider-jet-mongodba/internal/controller/cloud/backupsnapshotexportjob"
 	backupsnapshotrestorejob "github.com/timgchile/provider-jet-mongodba/internal/controller/cloud/backupsnapshotrestorejob"
 	provideraccess "github.com/timgchile/provider-jet-mongodba/internal/controller/cloud/provideraccess"
 	provideraccessauthorization "github.com/timgchile/provider-jet-mongodba/internal/controller/cloud/provideraccessauthorization"
@@ -68,6 +70,8 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		configuration.Setup,
 		backupschedule.Setup,
 		backupsnapshot.Setup,
+		backupsnapshotexportbucket.Setup,
+		backupsnapshotexportjob.Setup,
 		backupsnapshotrestorejob.Setup,
 		provideraccess.Setup,
 		provideraccessauthorization.Setup,

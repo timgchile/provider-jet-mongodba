@@ -42,6 +42,9 @@ type AdvancedClusterObservation struct {
 type AdvancedClusterParameters struct {
 
 	// +kubebuilder:validation:Optional
+	AdvancedConfiguration []AdvancedConfigurationParameters `json:"advancedConfiguration,omitempty" tf:"advanced_configuration,omitempty"`
+
+	// +kubebuilder:validation:Optional
 	BackupEnabled *bool `json:"backupEnabled,omitempty" tf:"backup_enabled,omitempty"`
 
 	// +kubebuilder:validation:Optional
@@ -90,6 +93,39 @@ type AdvancedClusterParameters struct {
 
 	// +kubebuilder:validation:Optional
 	VersionReleaseSystem *string `json:"versionReleaseSystem,omitempty" tf:"version_release_system,omitempty"`
+}
+
+type AdvancedConfigurationObservation struct {
+}
+
+type AdvancedConfigurationParameters struct {
+
+	// +kubebuilder:validation:Optional
+	DefaultReadConcern *string `json:"defaultReadConcern,omitempty" tf:"default_read_concern,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	DefaultWriteConcern *string `json:"defaultWriteConcern,omitempty" tf:"default_write_concern,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	FailIndexKeyTooLong *bool `json:"failIndexKeyTooLong,omitempty" tf:"fail_index_key_too_long,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	JavascriptEnabled *bool `json:"javascriptEnabled,omitempty" tf:"javascript_enabled,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	MinimumEnabledTLSProtocol *string `json:"minimumEnabledTlsProtocol,omitempty" tf:"minimum_enabled_tls_protocol,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	NoTableScan *bool `json:"noTableScan,omitempty" tf:"no_table_scan,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	OplogSizeMb *float64 `json:"oplogSizeMb,omitempty" tf:"oplog_size_mb,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	SampleRefreshIntervalBiConnector *float64 `json:"sampleRefreshIntervalBiConnector,omitempty" tf:"sample_refresh_interval_bi_connector,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	SampleSizeBiConnector *float64 `json:"sampleSizeBiConnector,omitempty" tf:"sample_size_bi_connector,omitempty"`
 }
 
 type AnalyticsSpecsObservation struct {
@@ -282,6 +318,8 @@ type RegionConfigsParameters struct {
 }
 
 type ReplicationSpecsObservation struct {
+	ContainerID map[string]*string `json:"containerId,omitempty" tf:"container_id,omitempty"`
+
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 }
 

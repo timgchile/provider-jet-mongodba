@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: advancedclusters.mongodba.jet.crossplane.io
+  name: backupsnapshotexportbuckets.cloud.mongodba.jet.crossplane.io
 spec:
-  group: mongodba.jet.crossplane.io
+  group: cloud.mongodba.jet.crossplane.io
   names:
     categories:
     - crossplane
     - managed
     - mongodbajet
-    kind: AdvancedCluster
-    listKind: AdvancedClusterList
-    plural: advancedclusters
-    singular: advancedcluster
+    kind: BackupSnapshotExportBucket
+    listKind: BackupSnapshotExportBucketList
+    plural: backupsnapshotexportbuckets
+    singular: backupsnapshotexportbucket
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,8 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: AdvancedCluster is the Schema for the AdvancedClusters API
+        description: BackupSnapshotExportBucket is the Schema for the BackupSnapshotExportBuckets
+          API
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +51,8 @@ spec:
           metadata:
             type: object
           spec:
-            description: AdvancedClusterSpec defines the desired state of AdvancedCluster
+            description: BackupSnapshotExportBucketSpec defines the desired state
+              of BackupSnapshotExportBucket
             properties:
               deletionPolicy:
                 default: Delete
@@ -63,40 +65,12 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  backupEnabled:
-                    type: boolean
-                  biConnector:
-                    items:
-                      properties:
-                        enabled:
-                          type: boolean
-                        readPreference:
-                          type: string
-                      type: object
-                    type: array
-                  clusterType:
+                  bucketName:
                     type: string
-                  diskSizeGb:
-                    type: number
-                  encryptionAtRestProvider:
+                  cloudProvider:
                     type: string
-                  labels:
-                    items:
-                      properties:
-                        key:
-                          type: string
-                        value:
-                          type: string
-                      type: object
-                    type: array
-                  mongoDbMajorVersion:
+                  iamRoleId:
                     type: string
-                  name:
-                    type: string
-                  paused:
-                    type: boolean
-                  pitEnabled:
-                    type: boolean
                   projectId:
                     type: string
                   projectIdRef:
@@ -122,102 +96,10 @@ spec:
                           is selected.
                         type: object
                     type: object
-                  replicationSpecs:
-                    items:
-                      properties:
-                        numShards:
-                          type: number
-                        regionConfigs:
-                          items:
-                            properties:
-                              analyticsSpecs:
-                                items:
-                                  properties:
-                                    diskIops:
-                                      type: number
-                                    ebsVolumeType:
-                                      type: string
-                                    instanceSize:
-                                      type: string
-                                    nodeCount:
-                                      type: number
-                                  required:
-                                  - instanceSize
-                                  type: object
-                                type: array
-                              autoScaling:
-                                items:
-                                  properties:
-                                    computeEnabled:
-                                      type: boolean
-                                    computeMaxInstanceSize:
-                                      type: string
-                                    computeMinInstanceSize:
-                                      type: string
-                                    computeScaleDownEnabled:
-                                      type: boolean
-                                    diskGbEnabled:
-                                      type: boolean
-                                  type: object
-                                type: array
-                              backingProviderName:
-                                type: string
-                              electableSpecs:
-                                items:
-                                  properties:
-                                    diskIops:
-                                      type: number
-                                    ebsVolumeType:
-                                      type: string
-                                    instanceSize:
-                                      type: string
-                                    nodeCount:
-                                      type: number
-                                  required:
-                                  - instanceSize
-                                  type: object
-                                type: array
-                              priority:
-                                type: number
-                              providerName:
-                                type: string
-                              readOnlySpecs:
-                                items:
-                                  properties:
-                                    diskIops:
-                                      type: number
-                                    ebsVolumeType:
-                                      type: string
-                                    instanceSize:
-                                      type: string
-                                    nodeCount:
-                                      type: number
-                                  required:
-                                  - instanceSize
-                                  type: object
-                                type: array
-                              regionName:
-                                type: string
-                            required:
-                            - priority
-                            - providerName
-                            - regionName
-                            type: object
-                          type: array
-                        zoneName:
-                          type: string
-                      required:
-                      - regionConfigs
-                      type: object
-                    type: array
-                  rootCertType:
-                    type: string
-                  versionReleaseSystem:
-                    type: string
                 required:
-                - clusterType
-                - name
-                - replicationSpecs
+                - bucketName
+                - cloudProvider
+                - iamRoleId
                 type: object
               providerConfigRef:
                 default:
@@ -264,23 +146,14 @@ spec:
             - forProvider
             type: object
           status:
-            description: AdvancedClusterStatus defines the observed state of AdvancedCluster.
+            description: BackupSnapshotExportBucketStatus defines the observed state
+              of BackupSnapshotExportBucket.
             properties:
               atProvider:
                 properties:
-                  clusterId:
-                    type: string
-                  connectionStrings:
-                    items:
-                      type: object
-                    type: array
-                  createDate:
+                  exportBucketId:
                     type: string
                   id:
-                    type: string
-                  mongoDbVersion:
-                    type: string
-                  stateName:
                     type: string
                 type: object
               conditions:
